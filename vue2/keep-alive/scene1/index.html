@@ -1,0 +1,55 @@
+<!--
+ * @Author: jack.lu
+ * @Date: 2022-07-22 13:43:12
+ * @LastEditTime: 2022-07-25 13:31:17
+ * @LastEditors: jack.lu
+ * @Description: your description
+ * @FilePath: /demo/vue2/keep-alive/scene1/index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.7/dist/vue.js"></script>
+    <title>keep-alive</title>
+  </head>
+  <body>
+    <div id="app">
+      <div>
+        <button @click="toggle = !toggle">切换</button>
+        <keep-alive>
+          <component :is="toggle ? 'comp1' : 'comp2'"></component>
+        </keep-alive>
+      </div>
+    </div>
+  </body>
+  <script>
+    const comp1 = Vue.component('comp1', {
+      template: '<input v-model="content"></input>',
+      data() {
+        return {
+          content: 'comp1'
+        }
+      }
+    })
+    const comp2 = Vue.component('comp2', {
+      template: '<input v-model="content"></input>',
+      data() {
+        return {
+          content: 'comp2'
+        }
+      }
+    })
+
+    const app = new Vue({
+      el: '#app',
+      data() {
+        return {
+          toggle: false
+        }
+      }
+    })
+  </script>
+</html>

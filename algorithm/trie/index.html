@@ -1,0 +1,28 @@
+<!--
+ * @Author: jack.lu
+ * @Date: 2022-07-25 10:02:41
+ * @LastEditTime: 2022-07-25 11:18:39
+ * @LastEditors: jack.lu
+ * @Description: your description
+ * @FilePath: /demo/algorithm/trie/index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>前缀树</title>
+  </head>
+  <body></body>
+  <script type="module">
+    import Trie from './index.js'
+
+    const trie = new Trie()
+    trie.insert('abc')
+    console.log(trie.search('ab'))
+    console.log(trie.search('abc'))
+    console.log(trie.startsWith('ab'))
+    console.log(trie.startsWith('abc'))
+  </script>
+</html>
