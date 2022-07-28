@@ -1,0 +1,50 @@
+<!--
+ * @Author: jack.lu
+ * @Date: 2022-07-22 13:43:12
+ * @LastEditTime: 2022-07-26 14:17:06
+ * @LastEditors: jack.lu
+ * @Description: your description
+ * @FilePath: /demo/vue2/component/scene2/index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.7/dist/vue.js"></script>
+    <title>extend data</title>
+  </head>
+  <body>
+    <div id="app">
+      <span>{{content}}</span>
+      <comp1></comp1>
+      <comp2></comp2>
+    </div>
+  </body>
+  <script>
+    const VueExtend = Vue.extend({
+      template: `
+        <div>
+          <button @click="amount += 1">增加</button>
+          <div>{{ amount }}</div>
+        </div>
+      `,
+      data: {
+        amount: 0
+      }
+    })
+
+    Vue.component('comp1', VueExtend)
+    Vue.component('comp2', VueExtend)
+
+    const app = new Vue({
+      el: '#app',
+      data() {
+        return {
+          content: '这是根实例的数据'
+        }
+      }
+    })
+  </script>
+</html>

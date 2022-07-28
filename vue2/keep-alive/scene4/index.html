@@ -1,0 +1,145 @@
+<!--
+ * @Author: jack.lu
+ * @Date: 2022-07-22 13:43:12
+ * @LastEditTime: 2022-07-25 17:37:20
+ * @LastEditors: jack.lu
+ * @Description: your description
+ * @FilePath: /demo/vue2/keep-alive/scene4/index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.7/dist/vue.js"></script>
+    <script
+      src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue-router/3.5.3/vue-router.min.js"
+      type="application/javascript"
+    ></script>
+    <title>keep-alive</title>
+  </head>
+  <body>
+    <div id="app">
+      <div>
+        <router-link to="/comp3">comp3</router-link>
+        <router-link to="/comp4">comp4</router-link>
+        <router-link to="/comp5">comp5</router-link>
+        <router-link to="/comp6">comp6</router-link>
+        <keep-alive>
+          <router-view></router-view>
+        </keep-alive>
+      </div>
+    </div>
+  </body>
+  <script>
+    const comp1 = Vue.component('comp1', {
+      template: `
+        <div>
+          <input v-model="content"></input>
+          <router-view></router-view>
+        </div>
+      `,
+      data() {
+        return {
+          content: 'comp1'
+        }
+      }
+    })
+    const comp2 = Vue.component('comp2', {
+      template: `
+        <div>
+          <input v-model="content"></input>
+          <keep-alive>
+            <router-view></router-view>
+          </keep-alive>
+        </div>
+      `,
+      data() {
+        return {
+          content: 'comp2'
+        }
+      }
+    })
+
+    const comp3 = Vue.component('comp3', {
+      template: '<input v-model="content"></input>',
+      data() {
+        return {
+          content: 'comp3'
+        }
+      },
+      beforeDestroy() {
+        console.log('hook: beforeDestroy-comp3')
+      }
+    })
+
+    const comp4 = Vue.component('comp4', {
+      template: '<input v-model="content"></input>',
+      data() {
+        return {
+          content: 'comp4'
+        }
+      },
+      beforeDestroy() {
+        console.log('hook: beforeDestroy-comp4')
+      }
+    })
+    const comp5 = Vue.component('comp5', {
+      template: '<input v-model="content"></input>',
+      data() {
+        return {
+          content: 'comp5'
+        }
+      },
+      beforeDestroy() {
+        console.log('hook: beforeDestroy-comp5')
+      }
+    })
+
+    const comp6 = Vue.component('comp6', {
+      template: '<input v-model="content"></input>',
+      data() {
+        return {
+          content: 'comp6'
+        }
+      },
+      beforeDestroy() {
+        console.log('hook: beforeDestroy-comp6')
+      }
+    })
+
+    const routes = [
+      {
+        path: '/comp1',
+        component: comp1,
+        children: [
+          { path: '/comp3', component: comp3 },
+          { path: '/comp4', component: comp4 }
+        ]
+      },
+      {
+        path: '/comp2',
+        component: comp2,
+        children: [
+          { path: '/comp5', component: comp5 },
+          { path: '/comp6', component: comp6 }
+        ]
+      }
+    ]
+
+    const router = new VueRouter({
+      routes
+    })
+
+    const app = new Vue({
+      el: '#app',
+      router,
+      data() {
+        return {
+          toggle: false
+        }
+      }
+    })
+  </script>
+</html>

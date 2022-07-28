@@ -1,0 +1,90 @@
+<!--
+ * @Author: jack.lu
+ * @Date: 2022-07-22 13:43:12
+ * @LastEditTime: 2022-07-27 14:45:11
+ * @LastEditors: jack.lu
+ * @Description: your description
+ * @FilePath: /demo/vue2/component/scene3/index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.7/dist/vue.js"></script>
+    <title>component</title>
+  </head>
+  <body>
+    <div id="app">
+      <div>
+        <comp1></comp1>
+        <comp2></comp2>
+        <abc>未知节点</abc>
+      </div>
+    </div>
+  </body>
+  <script>
+    const comp1 = Vue.component('comp1', {
+      template: '<input v-model="content"></input>',
+      data() {
+        return {
+          content: '我是组件1'
+        }
+      },
+      beforeCreate() {
+        console.log(`我是组件1的 beforeCreate`)
+      },
+      created() {
+        console.log(`${this.content}的 created`)
+      },
+      beforeMount() {
+        console.log(`${this.content}的 beforeMount`)
+      },
+      mounted() {
+        console.log(`${this.content}的 mounted`)
+      }
+    })
+    const comp2 = Vue.component('comp2', {
+      template: '<input v-model="content"></input>',
+      data() {
+        return {
+          content: '我是组件2'
+        }
+      },
+      beforeCreate() {
+        console.log(`我是组件2的 beforeCreate`)
+      },
+      created() {
+        console.log(`${this.content}的 created`)
+      },
+      beforeMount() {
+        console.log(`${this.content}的 beforeMount`)
+      },
+      mounted() {
+        console.log(`${this.content}的 mounted`)
+      }
+    })
+
+    const app = new Vue({
+      el: '#app',
+      data() {
+        return {
+          content: '我是根实例'
+        }
+      },
+      beforeCreate() {
+        console.log(`我是根实例的 beforeCreate`)
+      },
+      created() {
+        console.log(`${this.content}的 created`)
+      },
+      beforeMount() {
+        console.log(`${this.content}的 beforeMount`)
+      },
+      mounted() {
+        console.log(`${this.content}的 mounted`)
+      }
+    })
+  </script>
+</html>

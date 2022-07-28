@@ -1,0 +1,118 @@
+<!--
+ * @Author: jack.lu
+ * @Date: 2022-07-22 13:43:12
+ * @LastEditTime: 2022-07-25 17:39:01
+ * @LastEditors: jack.lu
+ * @Description: your description
+ * @FilePath: /demo/vue2/keep-alive/scene2/index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.7/dist/vue.js"></script>
+    <title>keep-alive</title>
+  </head>
+  <body>
+    <div id="app">
+      <div>
+        <button @click="toggle = !toggle">切换</button>
+        <keep-alive>
+          <component :is="toggle ? 'comp1' : 'comp2'"></component>
+        </keep-alive>
+      </div>
+    </div>
+  </body>
+  <script>
+    const comp1 = Vue.component('comp1', {
+      template: `
+        <div>
+          <input v-model="content"></input>
+          <button @click="toggle1 = !toggle1">切换2</button>
+          <component :is="toggle1 ? 'comp3' : 'comp4'"></component>
+        </div>
+      `,
+      data() {
+        return {
+          content: 'comp1',
+          toggle1: false
+        }
+      }
+    })
+    const comp2 = Vue.component('comp2', {
+      template: `
+        <div>
+          <input v-model="content"></input>
+          <button @click="toggle2 = !toggle2">切换2</button>
+          <keep-alive>
+            <component :is="toggle2 ? 'comp5' : 'comp6'"></component>
+          </keep-alive>
+        </div>
+      `,
+      data() {
+        return {
+          content: 'comp2',
+          toggle2: false
+        }
+      }
+    })
+
+    const comp3 = Vue.component('comp3', {
+      template: '<input v-model="content"></input>',
+      data() {
+        return {
+          content: 'comp3'
+        }
+      },
+      beforeDestroy() {
+        console.log('hook: beforeDestroy-comp3')
+      }
+    })
+
+    const comp4 = Vue.component('comp4', {
+      template: '<input v-model="content"></input>',
+      data() {
+        return {
+          content: 'comp4'
+        }
+      },
+      beforeDestroy() {
+        console.log('hook: beforeDestroy-comp4')
+      }
+    })
+    const comp5 = Vue.component('comp5', {
+      template: '<input v-model="content"></input>',
+      data() {
+        return {
+          content: 'comp5'
+        }
+      },
+      beforeDestroy() {
+        console.log('hook: beforeDestroy-comp5')
+      }
+    })
+
+    const comp6 = Vue.component('comp6', {
+      template: '<input v-model="content"></input>',
+      data() {
+        return {
+          content: 'comp6'
+        }
+      },
+      beforeDestroy() {
+        console.log('hook: beforeDestroy-comp6')
+      }
+    })
+
+    const app = new Vue({
+      el: '#app',
+      data() {
+        return {
+          toggle: false
+        }
+      }
+    })
+  </script>
+</html>
