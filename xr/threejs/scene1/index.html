@@ -1,0 +1,64 @@
+<!--
+ * @Author: jack.lu
+ * @Date: 2022-07-28 11:26:58
+ * @LastEditTime: 2022-07-28 13:28:45
+ * @LastEditors: jack.lu
+ * @Description: your description
+ * @FilePath: /demo/xr/threejs/sence1/index.html
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>牛刀小试p</title>
+    <style>
+      body {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="https://unpkg.com/three/build/three.js"></script>
+    <script>
+      // 场景
+      const scene = new THREE.Scene()
+
+      // 相机
+      const camera = new THREE.PerspectiveCamera(
+        75,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1000
+      )
+
+      // 定义渲染器
+      const renderer = new THREE.WebGLRenderer()
+      renderer.setSize(window.innerWidth, window.innerHeight)
+      document.body.appendChild(renderer.domElement)
+
+      // 声明几何体
+      const geometry = new THREE.BoxGeometry()
+
+      // 声明材料
+      const material = new THREE.MeshNormalMaterial()
+
+      // 设定渲染对象
+      const cube = new THREE.Mesh(geometry, material)
+
+      // 在场景中添加渲染对象
+      scene.add(cube)
+
+      camera.position.z = 7
+      animate()
+      function animate() {
+        requestAnimationFrame(animate)
+
+        cube.rotation.x += 0.01
+        cube.rotation.y += 0.01
+
+        // 渲染器渲染场景
+        renderer.render(scene, camera)
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,63 @@
+<!--
+ * @Author: jack.lu
+ * @Date: 2022-09-27 13:43:03
+ * @LastEditTime: 2022-09-27 14:01:10
+ * @LastEditors: jack.lu
+ * @Description: just do it
+ * @FilePath: /demo/vue3/async-component/scene1/index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>异步组件</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
+  <script>
+    const app = Vue.createApp({
+      template: '<div><comp1 /><comp2 /></div>'
+    })
+
+    const comp1 = {
+      template: '<div>组件</div>'
+    }
+
+    const comp2 = {
+      template: '<div>组件2</div>'
+    }
+
+    const loading = {
+      template: '<div>loading</div>'
+    }
+
+    const error = {
+      template: '<div>error</div>'
+    }
+    const asyncComp = Vue.defineAsyncComponent(() => {
+      return new Promise((resolve, reject) => {
+        resolve(comp1)
+      })
+    })
+    const asyncComp2 = Vue.defineAsyncComponent({
+      loader: () =>
+        new Promise(resolve => {
+          setTimeout(() => {
+            resolve(comp2)
+          }, 2000)
+        }),
+      loadingComponent: loading,
+      delay: 40000,
+      errorComponent: error,
+      timeout: 50000
+    })
+
+    app.component('comp1', asyncComp)
+    app.component('comp2', asyncComp2)
+    app.mount('#app')
+  </script>
+</html>

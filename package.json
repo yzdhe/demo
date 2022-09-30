@@ -1,0 +1,8 @@
+{
+	"dependencies": {
+		"@types/three": "^0.142.0",
+		"react-router": "6",
+		"react-router-dom": "6",
+		"three": "^0.142.0"
+	}
+}

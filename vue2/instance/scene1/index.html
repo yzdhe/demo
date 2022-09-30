@@ -1,0 +1,31 @@
+<!--
+ * @Author: jack.lu
+ * @Date: 2022-07-22 13:43:12
+ * @LastEditTime: 2022-07-28 17:03:15
+ * @LastEditors: jack.lu
+ * @Description: your description
+ * @FilePath: /demo/vue2/instance/scene1/index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.7/dist/vue.js"></script>
+    <title>instance</title>
+  </head>
+  <body>
+    <div id="app">{{ message }}</div>
+  </body>
+  <script>
+    const app = new Vue({
+      data() {
+        return {
+          message: 'hello Vue'
+        }
+      }
+    })
+    console.dir(app)
+  </script>
+</html>
