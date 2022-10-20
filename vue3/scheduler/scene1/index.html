@@ -1,7 +1,7 @@
 <!--
  * @Author: jack.lu
  * @Date: 2022-09-27 13:43:03
- * @LastEditTime: 2022-09-30 13:31:10
+ * @LastEditTime: 2022-09-30 13:36:51
  * @LastEditors: jack.lu
  * @Description: just do it
  * @FilePath: /demo/vue3/scheduler/scene1/index.html
@@ -20,7 +20,21 @@
   </body>
   <script>
     const app = Vue.createApp({
-      template: '<div>123</div>'
+      template: '<div>{{state.count}}</div>',
+      setup() {
+        const state = Vue.reactive({
+          count: 1
+        })
+        Vue.watchEffect(() => {
+          console.log(state.count)
+        })
+
+        Vue.onMounted(() => {
+          state.count++
+          state.count++
+        })
+        return { state }
+      }
     })
 
     app.mount('#app')
