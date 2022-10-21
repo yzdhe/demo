@@ -1,0 +1,53 @@
+<!--
+ * @Author: jack.lu
+ * @Date: 2022-10-20 17:07:22
+ * @LastEditTime: 2022-10-20 17:15:10
+ * @LastEditors: jack.lu
+ * @Description: just do it
+ * @FilePath: /demo/axios/demo/index1.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    axios({
+      method: 'GET',
+      url: 'http://localhost:3000/posts'
+    }).then(res => {
+      console.log(res)
+    })
+
+    axios({
+      method: 'PUT',
+      url: 'http://localhost:3000/posts',
+      data: {
+        title: '234234234',
+        id: 2
+      },
+      params: {
+        id: 2
+      }
+    }).then(res => {
+      console.log(res)
+    })
+
+    axios
+      .request({
+        method: 'GET',
+        url: 'http://localhost:3000/posts'
+      })
+      .then(res => {
+        console.log(res)
+      })
+    axios.get('http://localhost:3000/posts').then(res => {
+      console.log(res)
+    })
+  </script>
+</html>

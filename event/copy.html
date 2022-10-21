@@ -1,0 +1,33 @@
+<!--
+ * @Author: jack.lu
+ * @Date: 2022-10-21 15:32:10
+ * @LastEditTime: 2022-10-21 15:41:22
+ * @LastEditors: jack.lu
+ * @Description: just do it
+ * @FilePath: /demo/event/copy.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>copy</title>
+  </head>
+  <body>
+    <input type="text" />
+  </body>
+  <script>
+    document.addEventListener('copy', event => {
+      console.log('copy')
+    })
+
+    document.addEventListener('cut', event => {
+      console.log('cut')
+    })
+
+    document.addEventListener('paste', event => {
+      console.log('paste')
+    })
+  </script>
+</html>

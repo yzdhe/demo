@@ -1,0 +1,173 @@
+<!--
+ * @Author: jack.lu
+ * @Date: 2022-10-21 15:51:34
+ * @LastEditTime: 2022-10-21 16:35:04
+ * @LastEditors: jack.lu
+ * @Description: just do it
+ * @FilePath: /demo/event/draggable.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        /* Prevent the user selecting text in the example */
+        user-select: none;
+      }
+
+      #draggable {
+        text-align: center;
+        background: white;
+      }
+
+      #container {
+        width: 200px;
+        height: 20px;
+        background: blueviolet;
+        padding: 10px;
+      }
+
+      .dragging {
+        opacity: 0.5;
+      }
+
+      #draggable {
+        width: 200px;
+        height: 20px;
+        text-align: center;
+        background: white;
+      }
+
+      .dropzone {
+        width: 200px;
+        height: 20px;
+        background: blueviolet;
+        margin-bottom: 10px;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="dropzone">
+      <div
+        id="draggable"
+        draggable="true"
+        ondragstart="event.dataTransfer.setData('text/plain',null)"
+      >
+        This div is draggable
+      </div>
+    </div>
+    <div class="dropzone"></div>
+    <div class="dropzone"></div>
+    <div class="dropzone"></div>
+    <!-- <div id="container">
+      <div id="draggable" draggable="true">这个 div 是可拖动的</div>
+    </div>
+    <div class="dropzone"></div> -->
+    <p>123</p>
+  </body>
+  <script>
+    // document.addEventListener('dragstart', event => {
+    //   // make it half transparent
+    //   event.target.classList.add('dragging')
+    //   console.log('dragstart')
+    // })
+
+    // document.addEventListener('dragend', event => {
+    //   // reset the transparency
+    //   event.target.classList.remove('dragging')
+    //   console.log('dragend')
+    // })
+
+    var dragged
+
+    document.addEventListener(
+      'dragstart',
+      function (event) {
+        console.log('start')
+        // 保存拖动元素的引用 (ref.)
+        dragged = event.target
+        // 使其半透明
+        event.target.style.opacity = 0.5
+      },
+      false
+    )
+
+    document.addEventListener(
+      'dragend',
+      function (event) {
+        console.log('end')
+        // 重置透明度
+        event.target.style.opacity = ''
+      },
+      false
+    )
+
+    /* 放下目标节点时触发事件 */
+    document.addEventListener(
+      'dragover',
+      function (event) {
+        console.log('over')
+        // 阻止默认动作
+        event.preventDefault()
+      },
+      false
+    )
+
+    document.addEventListener(
+      'dragenter',
+      function (event) {
+        console.log('enter')
+        // 当可拖动的元素进入可放置的目标高亮目标节点
+        if (event.target.className == 'dropzone') {
+          event.target.style.background = 'purple'
+        }
+      },
+      false
+    )
+
+    document.addEventListener(
+      'dragleave',
+      function (event) {
+        console.log('leave')
+        // 当拖动元素离开可放置目标节点，重置其背景
+        if (event.target.className == 'dropzone') {
+          event.target.style.background = ''
+        }
+      },
+      false
+    )
+
+    document.addEventListener(
+      'drop',
+      function (event) {
+        console.log('drop')
+        // 阻止默认动作（如打开一些元素的链接）
+        event.preventDefault()
+        // 移动拖动的元素到所选择的放置目标节点
+        if (event.target.className == 'dropzone') {
+          event.target.style.background = ''
+          dragged.parentNode.removeChild(dragged)
+          event.target.appendChild(dragged)
+        }
+      },
+      false
+    )
+  </script>
+
+  <script>
+    const para = document.querySelector('p')
+
+    para.addEventListener('gotpointercapture', () => {
+      console.log("I've been captured!")
+    })
+
+    para.addEventListener('pointerdown', event => {
+      para.setPointerCapture(event.pointerId)
+    })
+  </script>
+</html>

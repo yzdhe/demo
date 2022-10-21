@@ -1,0 +1,63 @@
+<!--
+ * @Author: jack.lu
+ * @Date: 2022-10-21 16:42:29
+ * @LastEditTime: 2022-10-21 16:48:35
+ * @LastEditors: jack.lu
+ * @Description: just do it
+ * @FilePath: /demo/event/pointer.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p style="cursor: pointer">123123</p>
+  </body>
+  <script>
+    const para = document.querySelector('p')
+
+    para.addEventListener('pointercancel', event => {
+      console.log('Pointer event cancelled')
+    })
+
+    para.addEventListener('pointerdown', event => {
+      console.log('Pointer event pointerdown')
+    })
+
+    para.addEventListener('pointerenter', event => {
+      console.log('Pointer event pointerenter')
+    })
+
+    para.addEventListener('pointerleave', event => {
+      console.log('Pointer event pointerleave')
+    })
+
+    para.addEventListener('pointermove', event => {
+      console.log('Pointer event pointermove')
+    })
+
+    para.addEventListener('pointerout', event => {
+      console.log('Pointer event pointerout')
+    })
+
+    para.addEventListener('pointerover', event => {
+      console.log('Pointer event pointerover')
+    })
+
+    para.addEventListener('pointerup', event => {
+      console.log('Pointer event pointerup')
+    })
+
+    para.addEventListener('pointerout', event => {
+      console.log('Pointer event pointerout')
+    })
+
+    para.addEventListener('pointerlockchange', event => {
+      console.log('Pointer event pointerlockchange')
+    })
+  </script>
+</html>

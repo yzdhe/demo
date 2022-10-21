@@ -1,0 +1,43 @@
+<!--
+ * @Author: jack.lu
+ * @Date: 2022-10-21 15:42:05
+ * @LastEditTime: 2022-10-21 15:49:30
+ * @LastEditors: jack.lu
+ * @Description: just do it
+ * @FilePath: /demo/event/loading.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>资源加载相关</title>
+    <script></script>
+  </head>
+  <body>
+    <div></div>
+  </body>
+  <script>
+    for (let index = 0; index < 1000; index++) {
+      const a = 1
+    }
+  </script>
+  <script>
+    console.log(document.readyState)
+
+    document.addEventListener('load', event => {
+      console.log('load')
+      console.log(document.readyState)
+    })
+
+    document.addEventListener('readystatechange', event => {
+      console.log(document.readyState, 'readyStatechange')
+    })
+
+    document.addEventListener('DOMContentLoaded', event => {
+      console.log('DOMContentLoaded')
+      console.log(document.readyState)
+    })
+  </script>
+</html>

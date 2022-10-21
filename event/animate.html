@@ -1,0 +1,87 @@
+<!--
+ * @Author: jack.lu
+ * @Date: 2022-10-21 15:21:17
+ * @LastEditTime: 2022-10-21 15:30:13
+ * @LastEditors: jack.lu
+ * @Description: just do it
+ * @FilePath: /demo/event/animate.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>animation事件</title>
+    <style>
+      .container {
+        height: 3rem;
+      }
+
+      .event-log {
+        width: 25rem;
+        height: 2rem;
+        border: 1px solid black;
+        margin: 0.2rem;
+        padding: 0.2rem;
+      }
+
+      .animation.active {
+        animation-duration: 2s;
+        animation-name: slidein;
+        animation-iteration-count: 2;
+      }
+
+      @keyframes slidein {
+        from {
+          transform: translateX(100%) scaleX(3);
+        }
+        to {
+          transform: translateX(0) scaleX(1);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="animation-example">
+      <div class="container">
+        <p class="animation">You chose a cold night to visit our planet.</p>
+      </div>
+      <button class="activate" type="button">Activate animation</button>
+      <div class="event-log"></div>
+    </div>
+  </body>
+  <script>
+    const animation = document.querySelector('p.animation')
+    const applyAnimation = document.querySelector(
+      '.animation-example>button.activate'
+    )
+    let iterationCount = 0
+
+    animation.addEventListener('animationstart', () => {
+      console.log('animationstart')
+    })
+
+    animation.addEventListener('animationiteration', () => {
+      console.log('animationiteration')
+    })
+
+    animation.addEventListener('animationend', () => {
+      console.log('animationend')
+      animation.classList.remove('active')
+      console.log('Activate animation')
+    })
+
+    animation.addEventListener('animationcancel', () => {
+      console.log('animationcancel')
+    })
+
+    applyAnimation.addEventListener('click', () => {
+      animation.classList.toggle('active')
+      const active = animation.classList.contains('active')
+      applyAnimation.textContent = active
+        ? 'Cancel animation'
+        : 'Activate animation'
+    })
+  </script>
+</html>

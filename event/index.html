@@ -1,0 +1,79 @@
+<!--
+ * @Author: jack.lu
+ * @Date: 2022-10-21 13:57:45
+ * @LastEditTime: 2022-10-21 14:55:23
+ * @LastEditors: jack.lu
+ * @Description: just do it
+ * @FilePath: /demo/event/index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #outer {
+        width: 500px;
+        height: 500px;
+        border: 1px solid red;
+      }
+
+      #inner {
+        width: 200px;
+        height: 200px;
+        border: 1px solid green;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="outer">
+      <div id="inner">
+        <button id="btn">触发点击</button>
+      </div>
+    </div>
+  </body>
+  <script>
+    function $(id) {
+      return document.getElementById(id)
+    }
+
+    $('outer').addEventListener(
+      'click',
+      event => {
+        console.log('outer 捕获', event)
+      },
+      true
+    )
+
+    $('outer').addEventListener('click', event => {
+      console.log('outer 冒泡', event)
+    })
+
+    $('inner').addEventListener(
+      'click',
+      event => {
+        console.log('inner 捕获', event)
+      },
+      true
+    )
+
+    $('inner').addEventListener('click', event => {
+      console.log('inner 冒泡', event)
+    })
+
+    $('btn').addEventListener(
+      'click',
+      event => {
+        event.stopPropagation()
+        console.log('btn 捕获', event)
+      },
+      true
+    )
+
+    $('btn').addEventListener('click', event => {
+      console.log('btn 冒泡', event)
+    })
+  </script>
+</html>

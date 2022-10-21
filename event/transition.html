@@ -1,0 +1,56 @@
+<!--
+ * @Author: jack.lu
+ * @Date: 2022-10-21 16:37:52
+ * @LastEditTime: 2022-10-21 16:40:38
+ * @LastEditors: jack.lu
+ * @Description: just do it
+ * @FilePath: /demo/event/transition.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .transition {
+        width: 100px;
+        height: 100px;
+        background: rgba(255, 0, 0, 1);
+        transition-property: transform, background;
+        transition-duration: 2s;
+        transition-delay: 2s;
+      }
+
+      .transition:hover {
+        transform: rotate(90deg);
+        background: rgba(255, 0, 0, 0);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="transition"></div>
+    <div class="message"></div>
+  </body>
+  <script>
+    const message = document.querySelector('.message')
+    const el = document.querySelector('.transition')
+
+    el.addEventListener('transitionrun', () => {
+      console.log('transitionrun fired')
+    })
+
+    el.addEventListener('transitionstart', () => {
+      console.log('transitionstart fired')
+    })
+
+    el.addEventListener('transitioncancel', () => {
+      console.log('transitioncancel fired')
+    })
+
+    el.addEventListener('transitionend', () => {
+      console.log('transitionend fired')
+    })
+  </script>
+</html>
