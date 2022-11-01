@@ -1,0 +1,1 @@
+(()=>{"use strict";class c{a=1;abc(){return 2}}console.log((function(n,o){return n+(new c).abc()})),console.log(1)})();

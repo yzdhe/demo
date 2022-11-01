@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "debug": "node --inspect-brk ../../../../node_modules/webpack-cli/bin/cli.js"
+  }
+}

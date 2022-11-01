@@ -1,0 +1,1 @@
+{"mappings":"AAQAA,QAAQC,IAAI","sources":["src/index.js"],"sourcesContent":["/*\n * @Author: jack.lu\n * @Date: 2022-10-27 13:36:12\n * @LastEditTime: 2022-10-27 13:39:05\n * @LastEditors: jack.lu\n * @Description: just do it\n * @FilePath: /demo/parcel/src/index.js\n */\nconsole.log(1)\n"],"names":["console","log"],"version":3,"file":"index.d0247394.js.map"}

@@ -1,0 +1,1 @@
+console.log((function(){console.log(123)}));
